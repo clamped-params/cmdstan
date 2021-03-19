@@ -614,12 +614,13 @@ int command(int argc, const char *argv[]) {
                   ->value();
         unsigned int window
             = dynamic_cast<u_int_argument *>(adapt->arg("window"))->value();
-        return_code = stan::services::sample::hmc_nuts_diag_e_adapt(
-            model, *init_context, *metric_context, random_seed, id, init_radius,
-            num_warmup, num_samples, num_thin, save_warmup, refresh, stepsize,
-            stepsize_jitter, max_depth, delta, gamma, kappa, t0, init_buffer,
-            term_buffer, window, interrupt, logger, init_writer, sample_writer,
-            diagnostic_writer);
+        return_code = stan::services::sample::hmc_nuts_diag_e_adapt
+	  (model, *init_context, *clamped_params_context, *metric_context, random_seed,
+	   id, init_radius,
+	   num_warmup, num_samples, num_thin, save_warmup, refresh, stepsize,
+	   stepsize_jitter, max_depth, delta, gamma, kappa, t0, init_buffer,
+	   term_buffer, window, interrupt, logger, init_writer, sample_writer,
+	   diagnostic_writer);
       } else if (engine->value() == "nuts" && metric->value() == "unit_e"
                  && adapt_engaged == false) {
         categorical_argument *base = dynamic_cast<categorical_argument *>(
