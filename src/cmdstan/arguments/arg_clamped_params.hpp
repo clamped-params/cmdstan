@@ -10,7 +10,7 @@ class arg_clamped_params : public string_argument {
  public:
   arg_clamped_params() : string_argument() {
     _name = "clamped_params";
-    _description = "File with clamped parameters same format as init and data file.";
+    _description = "File with clamped parameters (same format as init and data file).";
     _default = "";
     _default_value = "";
     _constrained = false;
